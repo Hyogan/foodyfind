@@ -6,6 +6,7 @@ import 'package:foodyfind/auth/login_or_register.dart';
 // import 'package:foodyfind/theme/dark_mode.dart';
 import 'package:foodyfind/theme/light_mode.dart';
 import 'package:foodyfind/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +14,13 @@ void main() async {
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
 
-  runApp(const MyApp());
+    runApp(
+        ChangeNotifierProvider(
+          create: (context) => ThemeProvider(),
+          child: const MyApp(),
+        ),
+    );
+
 }
 
 class MyApp extends StatefulWidget {
@@ -29,10 +36,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const LoginOrRegister(),
-
-      // darkTheme: darkMode,
-      // theme: Provider.of<ThemeProvider>(context).themeData,
-      theme : lightMode
+      theme : Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }
