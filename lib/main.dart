@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:foodyfind/pages/register.dart';
 import 'package:foodyfind/auth/login_or_register.dart';
+import 'package:foodyfind/data/models/restaurants.dart';
 // import 'package:foodyfind/theme/dark_mode.dart';
 import 'package:foodyfind/theme/light_mode.dart';
 import 'package:foodyfind/theme/theme_provider.dart';
@@ -15,10 +16,14 @@ void main() async {
   // );
 
     runApp(
-        ChangeNotifierProvider(
-          create: (context) => ThemeProvider(),
+      MultiProvider(providers: [
+        //theme provider
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        //restaurant notifier
+        ChangeNotifierProvider(create: (context) => Restaurant()),
+      ],
           child: const MyApp(),
-        ),
+      ),
     );
 
 }
