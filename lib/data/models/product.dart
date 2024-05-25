@@ -40,7 +40,11 @@ enum ProductCategory
   drinks,
   salads,
   desserts,
-  milky
+  milky,
+  Sugars_and_sweets,
+  Beverages,
+  Spices_and_condiments,
+  Fruits_and_vegetables
 }
 //Oils_and_fats, fruits, milky, meat_fish_eggs,Legumes,Dairy_products
 

@@ -7,7 +7,7 @@ import 'package:foodyfind/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+const MyDrawer({super.key});
 
   void logout(){
     final authService = AuthService();

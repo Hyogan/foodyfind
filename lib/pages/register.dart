@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodyfind/components/my_button.dart';
 import 'package:foodyfind/components/my_textfield.dart';
 import 'package:foodyfind/services/auth/auth_service.dart';
+import 'package:foodyfind/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   
@@ -80,8 +83,27 @@ class _RegisterPageState extends State<RegisterPage> {
                     'F OO DY F I N D',
                     style:  TextStyle(fontSize: 20),
                   ),
+                  //Username TextField
+                const SizedBox(height: 50),
 
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Dark Mode",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                        ),
+                      ),
+                    CupertinoSwitch(
+                      value: Provider.of<ThemeProvider>(context,listen : false).isDarkMode,
+                      onChanged: (value) =>
+                        Provider.of<ThemeProvider>(context,listen : false).toggleTheme(),
 
+                    ),
+                  ],
+                ),
 
                 //Username TextField
                 const SizedBox(height: 50),

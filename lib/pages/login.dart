@@ -1,10 +1,13 @@
 // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodyfind/components/my_button.dart';
 import 'package:foodyfind/components/my_textfield.dart';
 import 'package:foodyfind/helpers/helper_functions.dart';
 import 'package:foodyfind/pages/home.dart';
 import 'package:foodyfind/services/auth/auth_service.dart';
+import 'package:foodyfind/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -35,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
 
     //try sign in
     try {
-      await authService.signUpWithEmailPassword(emailController.text, passwordController.text);
+      await authService.signInWithEmailPassword(emailController.text, passwordController.text);
     }
     //display errors
 
@@ -65,6 +68,24 @@ class _LoginPageState extends State<LoginPage> {
                     color : Theme.of(context).colorScheme.inversePrimary,
 
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Dark Mode",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                        ),
+                      ),
+                    CupertinoSwitch(
+                      value: Provider.of<ThemeProvider>(context,listen : false).isDarkMode,
+                      onChanged: (value) =>
+                        Provider.of<ThemeProvider>(context,listen : false).toggleTheme(),
+
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 25),
               //App name
                 const Text(

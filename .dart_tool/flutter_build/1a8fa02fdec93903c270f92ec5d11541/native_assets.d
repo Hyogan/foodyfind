@@ -1,0 +1,1 @@
+ /home/tiagho/AndroidStudioProjects/foodyfind/.dart_tool/flutter_build/1a8fa02fdec93903c270f92ec5d11541/native_assets.yaml: 
