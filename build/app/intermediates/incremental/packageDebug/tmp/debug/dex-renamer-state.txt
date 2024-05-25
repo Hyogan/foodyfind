@@ -1,4 +1,4 @@
-#Fri May 24 12:45:33 WAT 2024
+#Sat May 25 13:50:37 WAT 2024
 base.0=/home/tiagho/AndroidStudioProjects/foodyfind/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

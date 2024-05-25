@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodyfind/pages/cart.dart';
 
 
 class MySliverAppBar extends StatelessWidget {
@@ -21,7 +22,13 @@ class MySliverAppBar extends StatelessWidget {
       floating: false,
       pinned: true,
       actions: [
-        IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart)),
+        IconButton(
+            onPressed: (){
+              //go to cart pagge
+              Navigator.push(context,MaterialPageRoute(builder : (context) => CartPage()));
+            },
+            icon: Icon(Icons.shopping_cart)),
+
       ],
       backgroundColor: Theme.of(context).colorScheme.background,
       foregroundColor: Theme.of(context).colorScheme.inversePrimary,

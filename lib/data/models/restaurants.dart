@@ -1,4 +1,7 @@
+
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:foodyfind/data/models/cart_item.dart';
 
 import 'product.dart';
 class Restaurant extends ChangeNotifier{
@@ -78,21 +81,91 @@ class Restaurant extends ChangeNotifier{
   *
   */
   List<Product> get menu => _menu;
+  List<CartItem> get cart => _cart;
 
   /*
   * O P E R A T I O N S
-  *   // ADD TO THE CART
-  *
-  *   // REMOVE FROM THE CART
-  *
-  *
-  *   // GET TOTAL PRICE OF THE CART
-  *
-  *   // GET TOTAL NUMBER OF ITEMS IN CART
-  *
-  *   // CLEAR THE CART
   *
   */
+
+  // CREATE A USER CART
+    final List<CartItem> _cart = [];
+  // // ADD TO THE CART
+
+      void addToCart(Product  product, List<Addon> selectedAddons) {
+         // find if there is a cart item already with the same food and selected addons
+        CartItem? cartItem = _cart.firstWhereOrNull((item) {
+          //check if the food items are the same
+          bool isSameProduct = item.product == product;
+            //check if the list of selected addons are the same
+          bool isSameAddons = ListEquality().equals(item.selectedAddons, selectedAddons);
+
+          return isSameProduct && isSameAddons;
+        });
+
+        if (cartItem != null) {
+          cartItem.quantity++;
+        }
+
+        //otherwise, add a new cart item
+        else {
+          _cart.add(CartItem(product: product, selectedAddons: selectedAddons));
+        }
+        notifyListeners();
+      }
+
+      //Remove from the cart
+      void removeFromCart(CartItem cartItem) {
+        int cartIndex = _cart.indexOf(cartItem);
+
+        if(cartIndex != -1) {
+          if(_cart[cartIndex].quantity > 1) {
+            _cart[cartIndex].quantity--;
+          }else {
+            _cart.removeAt(cartIndex);
+          }
+        }
+        notifyListeners();
+      }
+
+
+   // GET TOTAL PRICE OF THE CART
+    double getTotalPrice() {
+        double total = 0.0;
+
+        for(CartItem cartItem in _cart ) {
+            double itemTotal = cartItem.product.price;
+
+            for(Addon addon in  cartItem.selectedAddons) {
+              itemTotal += addon.price;
+            }
+
+            total += itemTotal * cartItem.quantity;
+        }
+
+        return total;
+    }
+
+   // GET TOTAL NUMBER OF ITEMS IN CART
+
+    int getTotalItemCount() {
+      int totalItemCount = 0 ;
+      for(CartItem cartItem in _cart) {
+        totalItemCount += cartItem.quantity;
+      }
+
+      return totalItemCount;
+    }
+
+
+   // CLEAR THE CART
+
+    void clearCart() {
+        _cart.clear();
+        notifyListeners();
+    }
+
+
 
   /*
     * H E L P E R S

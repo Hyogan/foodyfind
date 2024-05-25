@@ -7,6 +7,7 @@ import 'package:foodyfind/components/my_sliver_app_bar.dart';
 import 'package:foodyfind/components/my_tab_bar.dart';
 import 'package:foodyfind/data/models/product.dart';
 import 'package:foodyfind/data/models/restaurants.dart';
+import 'package:foodyfind/pages/product.dart';
 import 'package:provider/provider.dart';
 
 
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
           //get individual product and return it as a widget
           final product = categoryMenu[index];
-          return ProductTile(product: product , onTap: (){},);
+          return ProductTile(product: product , onTap: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => ProductPage(product: product))),);
         },
       );
     }).toList();
