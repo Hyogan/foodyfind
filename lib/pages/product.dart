@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodyfind/components/my_button.dart';
 import 'package:foodyfind/data/models/product.dart';
@@ -60,7 +59,7 @@ class _ProductPageState extends State<ProductPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                   //product name
-                  Text(widget.product.name, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                  Text(widget.product.name, style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
                   //Product price
                   Text(
                   "Fcfa ${widget.product.price.toString()}",
@@ -145,7 +144,7 @@ class _ProductPageState extends State<ProductPage> {
                 shape: BoxShape.circle,
             ),
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios_rounded),
+              icon: const Icon(Icons.arrow_back_ios_rounded),
               onPressed: () => Navigator.pop(context),
             ),
           ),

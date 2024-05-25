@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:foodyfind/data/models/product.dart';
 
 

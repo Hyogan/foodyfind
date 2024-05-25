@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "527696563881",
+    "project_id": "foodyfin-b71f3",
+    "storage_bucket": "foodyfin-b71f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527696563881:android:a21926fcc6ef3039eca3b8",
+        "android_client_info": {
+          "package_name": "com.example.foodyfind"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7g79m27VzwQcsZVcvq6O0w6BvLh5lUhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

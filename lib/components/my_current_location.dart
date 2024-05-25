@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyCurrentLocation extends StatelessWidget {
   void openLocationSearchBox(BuildContext context) {
     showDialog(context: context, builder: (context) => AlertDialog(
-      title : Text("Your location"),
+      title : const Text("Your location"),
       content: TextFormField(
         decoration: const InputDecoration(hintText: "Search address..."),
       ),
@@ -37,7 +36,7 @@ class MyCurrentLocation extends StatelessWidget {
                       fontWeight: FontWeight.bold
                     ),
                 ),
-                Icon(Icons.keyboard_arrow_down_rounded)
+                const Icon(Icons.keyboard_arrow_down_rounded)
               ],
             ),
           )

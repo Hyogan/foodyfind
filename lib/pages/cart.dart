@@ -22,7 +22,7 @@ class CartPage extends StatelessWidget {
             ),
             body: Column(
               children: [
-                userCart.isEmpty ? Text("Cart is empty") : Expanded(
+                userCart.isEmpty ? const Text("Cart is empty") : Expanded(
                     child: ListView.builder(
                       itemCount: userCart.length,
                       itemBuilder: (context,index){

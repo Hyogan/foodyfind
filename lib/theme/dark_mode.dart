@@ -12,8 +12,4 @@ ThemeData darkMode = ThemeData(
     tertiary: const Color.fromARGB(255, 47, 47, 47),
     inversePrimary: Colors.grey.shade300
   ),
-  textTheme: ThemeData.dark().textTheme.apply(
-    bodyColor: Colors.grey[300],
-    displayColor: Colors.white,
-  )
 );

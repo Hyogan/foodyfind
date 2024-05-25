@@ -1,15 +1,13 @@
-//  import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:foodyfind/components/my_button.dart';
 import 'package:foodyfind/components/my_textfield.dart';
-import 'package:foodyfind/helpers/helper_functions.dart';
+import 'package:foodyfind/services/auth/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   
   
   final void Function()? onTap;
-  RegisterPage({super.key, this.onTap});
+  const RegisterPage({super.key, this.onTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -27,13 +25,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   // login method
   void registerUser() async {
+    final authService = AuthService();
     //Show loading circle
-    showDialog(
-      context: context,
-      builder: (context) => const Center(
-        child : CircularProgressIndicator(),
-      ),
-    );
+
     //Check password and password
     if(passwordController.text != passwordConfirmationController.text)
     {
@@ -41,24 +35,22 @@ class _RegisterPageState extends State<RegisterPage> {
           Navigator.pop(context);
 
         //show the errors
-        displayMessageToUser("Password don't match", context);
+          showDialog(
+              context: context,
+              builder: (context) => const AlertDialog(
+                title: Text('Password does not match'),
+          ));
     }
     else{
-      //Register logic
-      // try {
-      //   //create the user
-      //   UserCredential? userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-
-
-      //   //pop loading circle
-      //   Navigator.pop(context);
-      
-      // }
-      // on FirebaseAuthException catch(e){
-      
-      //   Navigator.pop(context);
-      //   displayMessageToUser(e.code, context);
-      // }
+      try{
+        await authService.signUpWithEmailPassword(emailController.text, passwordController.text);
+      }
+      catch(e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(title: Text(e.toString())),
+        );
+      }
 
     }
   }
@@ -84,9 +76,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   const SizedBox(height: 25),
                 //App name
-                  Text(
+                  const Text(
                     'F OO DY F I N D',
-                    style: TextStyle(fontSize: 20),
+                    style:  TextStyle(fontSize: 20),
                   ),
 
 
@@ -125,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(height: 25),
                 //Sign in button
 
-                   MyButton(text: 'Register', onTap: widget.onTap),
+                   MyButton(text: 'Register', onTap: registerUser),
                    const SizedBox(height: 25),
                 //don't  have an account, register here .
                   Row(

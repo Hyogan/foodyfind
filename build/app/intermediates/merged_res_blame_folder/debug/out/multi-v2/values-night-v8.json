@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.foodyfind.app-mergeDebugResources-9:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.foodyfind.app-mergeDebugResources-14:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "/home/tiagho/AndroidStudioProjects/foodyfind/android/app/src/main/res/values-night/styles.xml",

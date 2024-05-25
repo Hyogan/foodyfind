@@ -1,9 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodyfind/components/my_drawer_tile.dart';
 import 'package:foodyfind/pages/settings.dart';
+import 'package:foodyfind/services/auth/auth_service.dart';
+import 'package:foodyfind/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
+
+  void logout(){
+    final authService = AuthService();
+    authService.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +38,29 @@ class MyDrawer extends StatelessWidget {
             Navigator.pop(context);
             Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
           }),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "Dark Mode",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
+              ),
+            CupertinoSwitch(
+              value: Provider.of<ThemeProvider>(context,listen : false).isDarkMode,
+              onChanged: (value) =>
+                Provider.of<ThemeProvider>(context,listen : false).toggleTheme(),
 
-          Spacer(),
-          //Logout List tile
-          MyDrawerTile(text: "L O G O U T ", icon: Icons.logout, onTap: (){}),
-          const SizedBox(height:25),
-        ],
-      ),
+            ),
+          ],
+        ),
+            const Spacer(),
+    //Logout List tile
+        MyDrawerTile(text: "L O G O U T ", icon: Icons.logout, onTap: logout),
+        const SizedBox(height:25),
+    ]),
     );
   }
 }

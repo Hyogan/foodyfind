@@ -1,14 +1,14 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:foodyfind/components/my_button.dart';
 import 'package:foodyfind/components/my_textfield.dart';
 import 'package:foodyfind/helpers/helper_functions.dart';
 import 'package:foodyfind/pages/home.dart';
+import 'package:foodyfind/services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
 
-  LoginPage({super.key, required this.onTap });
+  const LoginPage({super.key, required this.onTap });
 
     
   final void Function()? onTap;
@@ -30,21 +30,20 @@ class _LoginPageState extends State<LoginPage> {
 
   // login method
   void loginUser() async {
-      widget.onTap!();
-      // showDialog(context: context, builder: (context) => const Center(child: CircularProgressIndicator(),) )
+    final authService = AuthService();
 
-      // try {
-      //   await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
-      
-      // }
-      // on FirebaseException catch(e) {
 
-      //   //Popp a message to user
-      //   displayMessageToUser(e.message, context);
-      // }
-  
-      // AuthCredential authCredential = 
-      // UserCredential? userCredentials = FirebaseAuth.instance.signInWithCredential(credential)
+    //try sign in
+    try {
+      await authService.signUpWithEmailPassword(emailController.text, passwordController.text);
+    }
+    //display errors
+
+    catch (e) {
+      displayMessageToUser("${e.toString()} ",context);
+    }
+
+
   }
 
   // Text editing Controllers
@@ -68,9 +67,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 const SizedBox(height: 25),
               //App name
-                Text(
+                const Text(
                   'F OO DY F I N D',
-                  style: TextStyle(fontSize: 20),
+                  style:  TextStyle(fontSize: 20),
                 ),
 
               //Email textfield
@@ -102,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 25),
               //Sign in button
 
-                 MyButton(text: 'Login', onTap: login),
+                 MyButton(text: 'Login', onTap: loginUser),
                  const SizedBox(height: 25),
               //don't  have an account, register here .
                 Row(
